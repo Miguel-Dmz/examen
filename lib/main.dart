@@ -1,42 +1,66 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.purple),
+      home: ListViewScreen(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class ListViewScreen extends StatelessWidget {
+  final List<String> items = [
+    "Apple",
+    "Food",
+    "Product",
+    "Item",
+    "List View",
+    "Non App",
+    "Design"
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
+        title: Text("Miguel Dominguez \n Mat:22308051281173"),
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+        backgroundColor: Colors.purple,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.search, color: Colors.white),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.add, color: Colors.white),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Colors.purple,
+              child:
+                  Text(items[index][0], style: TextStyle(color: Colors.white)),
+            ),
+            title: Text(items[index]),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.purple,
+        child: Icon(Icons.add, color: Colors.white),
       ),
     );
   }
